@@ -1,0 +1,7 @@
+librosa>=0.10.1
+matplotlib>=3.8.2
+numpy>=1.26.3
+resampy>=0.4.3
+scipy>=1.12.0
+sms-tools>=1.0
+soundfile>=0.12.1

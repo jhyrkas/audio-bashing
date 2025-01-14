@@ -143,7 +143,7 @@ class AnalyzedAudio :
         # analysis parameters...to be variable?
         N = 2048
         H = N//4
-        w = scipy.signal.hamming(N)
+        w = scipy.signal.windows.hamming(N)
         t = -50.0 # dB
 
         self.frame_len_s = N / fs
