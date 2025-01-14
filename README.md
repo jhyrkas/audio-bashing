@@ -62,4 +62,14 @@ Audio whacker:
 In most cases, bashed.wav or whacked.wav are the files you are interested in. The others exist as alternative options, sanity checking, or used to generate figures in the paper.
 
 ### Parameters
-Full list of parameters incoming.
+The following parameters can be set to change the behavior of the algorithms:
+
+* -nsines=N: sets the number of maximum sine tracks at any given time used to model each audio file. The default is 10 (note: this number can be low, as only prominent partials should be tracked and there is no sinusoidal resynthesis)
+* -bw_percent_low=f: sets the lower bound on sine differences to be analyzed. Range is [0-1], as a fraction of critical bandwidth. The default is 0.1 (i.e. partials closer than 10% of a critical band apart will not be adjusted for roughness).
+* -bw_percent_high=f: sets the upper bound on sine differences to be analyzed. Range is [0-1], as a fraction of critical bandwidth. The default is 0.3 (i.e. partials farther than 33% of a critical band apart will not be adjusted for roughness).
+* --consonance=T/F: sets whether the audio files should be adjusted to make the mix more consonant or dissonant. Default is True (i.e. bashed.wav or whacked.wav will be more consonant than the vanilla mix)
+* --normalize=T/F: sets whether the audio files should be normalized individually. Default is False. Setting this to True will destroy any level balancing present in the original files.
+* -roughness_thresh=f: sets the minimum threshold that a pair of sinusoids should generate to be considered for adjustment. The default is 0.0001. Reasonable values for this parameter change if using different roughness measurements. Setting this parameter to 0.0 forces all pairs of partials to be considered.
+* --hard_bash=T/F: audio basher only. If this parameter is true, partials that contribute to roughness will be adjusted so that new parameters are exactly the same distance apart in Hz. This distance is set by the -delta parameter (see below). This can be useful in creating a tremolo-like effect. The default value is False.
+* -delta=f: audio basher only. If --hard-bash is enabled (see above), partials that contribute to roughness will be adjusted to be exactly f Hz apart.
+* -whack_percent=f: audio whacker only. The amplitude whacker will determine the optimal amplitudes for adjusted partials and move them to a fractional percent of the optimum values. The parameter ranges from [0-1], and the default is 1 (i.e. partials are always adjusted 100%).
