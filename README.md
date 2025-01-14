@@ -41,3 +41,25 @@ Some additional figures are generated that were not used in the paper.
 * sethares_axes.pdf/.png: This figures illustrates that the frequency ratio of maximum dissonance changes across the frequency band (and is therefore not related to musical intervals).
 
 ## Running the algorithms
+The two main scripts in this codebase are audio_basher.py and audio_whacker.py. The first controls roughness by changing the frequencies of certain partials in audio files, while
+the latter changes their amplitudes. General use of the software works as follows:
+
+> python3 audio_[basher/whacker].py [list of options] [list of input audio files]
+
+The input files will be analyzed and processed to either reduce or increase the roughness of the audio mix, depending on parameter settings.
+Audio files will be written in the .wav format:
+
+Audio basher:
+
+* bashed.wav: contains the audio files mixed together after changing the frequency of some sound partials.
+* filtered.wav: contains the audio files mixed together with clashing harmonics removed. This is sometimes useful or preferable to bashed.wav. This file will always be more consonant than the vanilla mix, whereas bashed.wav can be made to be more dissonant with user parameterization.
+* diff.wav: contains only the sonic difference between the vanilla mix and bashed.wav. This can be useful if you want to hear what was changed.
+
+Audio whacker:
+
+* whacked.wav: contains the audio files mixed together after changing the amplitude of some sound partials.
+
+In most cases, bashed.wav or whacked.wav are the files you are interested in. The others exist as alternative options, sanity checking, or used to generate figures in the paper.
+
+### Parameters
+Full list of parameters incoming.
